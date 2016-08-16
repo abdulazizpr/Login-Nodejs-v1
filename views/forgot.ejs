@@ -1,0 +1,8 @@
+<h1>Forgot Password</h1>
+<% if(message.length > 0) { %>
+    <p style="color:red"><%= message %></p>
+<% } %>
+<form action="/forgot-password" method="post">
+    Email : <input type="text" name="email"/></br>
+    <input type="submit" name="send" value="Send"/>
+</form>

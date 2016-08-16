@@ -1,0 +1,10 @@
+<h1>Login</h1>
+<% if(message.length > 0) { %>
+    <p style="color:red"><%= message %></p>
+<% } %>
+<form action="/login" method="post">
+    Email : <input type="text" name="email"/></br>
+    Password : <input type="password" name="password"/></br>
+    <input type="submit" name="login" value="Login"/>
+</form>
+<a href="/forgot-password">Forgot Password</a>
