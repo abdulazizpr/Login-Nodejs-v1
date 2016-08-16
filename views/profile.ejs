@@ -22,11 +22,11 @@
             <td><%= item.tahun %></td>
             <td><%= item.penerbit %></td>
             <td><%= item.pengarang %></td>
-            <td><a href="#">Update</a> | <a href="#">Delete</a></td>
+            <td><a href="/profile/update/<%= item.id %>">Update</a> | <a href="/profile/delete/<%= item.id %>">Delete</a></td>
         </tr>
         <% 
             i++
             }); 
          %>
 </table>
-<a href="#">Tambah Buku</a>
+<a href="/profile/add">Tambah Buku</a>

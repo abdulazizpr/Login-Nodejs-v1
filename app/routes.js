@@ -64,6 +64,7 @@ module.exports = function(app,passport){
         
     });
 
+    //forgot password from email
     app.get('/confirm-password/:id',function(req,res){
         User.findOne({'_id':req.params.id},function(err,user){
             res.render('confirm-password.ejs',{message:req.flash('ConfirmPasswordMessage'),user:user});
@@ -138,17 +139,104 @@ module.exports = function(app,passport){
         });
     });
 
-    //profile section
+    //CRUD
+    //form add
     app.get('/profile/add',isLoggedIn,function(req,res){
         var data = {
             user       : req.user,
+            id         : "",
             judul_buku : "",
             tahun      : "",
             penerbit   : "",
-            pengarang  : "" 
+            pengarang  : "", 
+            action     : "/profile/add",
+            button     : "Tambah Buku"
         };
         
         res.render('form.ejs',data);
+    });
+
+    //action add
+    app.post('/profile/add',isLoggedIn,function(req,res){
+
+        var Bookdata = new Book({
+            judul_buku  : req.body.judul_buku,
+            tahun       : req.body.tahun,
+            penerbit    : req.body.penerbit,
+            pengarang   : req.body.pengarang
+        });
+
+        Bookdata.save(function(err){
+            if(!err){
+                return console.log("created");
+            }else{
+                return console.log(err);
+            }
+        });
+
+        res.redirect('/profile');
+    });
+
+    //form update
+    app.get('/profile/update/:id',isLoggedIn,function(req,res){
+        
+        Book.findById(req.params.id,function(err,book){
+            if(!err){
+                var data = {
+                    user       : req.user,
+                    id         : book.id,
+                    judul_buku : book.judul_buku,
+                    tahun      : book.tahun,
+                    penerbit   : book.penerbit,
+                    pengarang  : book.pengarang, 
+                    action     : "/profile/update/"+book.id,
+                    button     : "Update Buku"
+                };
+        
+                res.render('form.ejs',data);
+            }else{
+                console.log(err);
+            }
+        });
+        
+        
+    });
+
+    //action update
+    app.post('/profile/update/:id',isLoggedIn,function(req,res){
+            
+            Book.findOneAndUpdate(
+                {_id:req.params.id},
+                {$set:{
+                    judul_buku : req.body.judul_buku,
+                    tahun      : req.body.tahun,
+                    penerbit   : req.body.penerbit,
+                    pengarang  : req.body.pengarang
+                }},
+                {upsert: true},
+                function(err, newUser){
+                    if(err){
+                        console.log(err);
+                    }else{
+                        console.log("updated");
+                        res.redirect('/profile');
+                    }
+                }
+            );
+        
+        
+    });
+
+    //delete data
+    app.get('/profile/delete/:id',isLoggedIn,function(req,res){
+        Book.remove({_id:req.params.id},function(err){
+            if(!err){
+                console.log("deleted");
+                res.redirect('/profile');
+            }else{
+                console.log(err);
+            }
+        });
     });
 
     //logout
