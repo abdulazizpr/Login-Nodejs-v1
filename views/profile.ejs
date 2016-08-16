@@ -1,7 +1,32 @@
 <h1><span class="fa fa-anchor"></span> Profile Page</h1>
 <a href="/logout" class="btn btn-default btn-sm">Logout</a>
 <p>
-    <strong>id</strong>: <%= user._id %><br>
     <strong>email</strong>: <%= user.email %><br>
-    <strong>password</strong>: <%= user.password %>
 </p>
+<table border=1>
+        <tr>
+            <th>No.</th>
+            <th>Judul Buku</th>
+            <th>Tahun</th>
+            <th>Penerbit</th>
+            <th>Pengarang</th>
+            <th>Action</th>
+        </tr>
+        <% 
+            i = 1;
+            book.forEach(function(item){ 
+        %>
+        <tr>
+            <td><%= i%></td>
+            <td><%= item.judul_buku %></td>
+            <td><%= item.tahun %></td>
+            <td><%= item.penerbit %></td>
+            <td><%= item.pengarang %></td>
+            <td><a href="#">Update</a> | <a href="#">Delete</a></td>
+        </tr>
+        <% 
+            i++
+            }); 
+         %>
+</table>
+<a href="#">Tambah Buku</a>

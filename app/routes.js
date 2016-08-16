@@ -95,7 +95,7 @@ module.exports = function(app,passport){
 
     //login
     //show the login form
-    app.get('/login',isLoggedIn,function(req,res){
+    app.get('/login',function(req,res){
         //render the page and pass in any flash data if exits
         res.render('login.ejs',{message:req.flash('loginMessage')});
     });
@@ -126,7 +126,7 @@ module.exports = function(app,passport){
 
     //profile section
     app.get('/profile',isLoggedIn,function(req,res){
-        Book.find(function(err,user){
+        Book.find(function(err,book){
             if(!err){
                 res.render('profile.ejs',{
                     book : book,
@@ -136,6 +136,19 @@ module.exports = function(app,passport){
                 return console.log(err);
             }
         });
+    });
+
+    //profile section
+    app.get('/profile/add',isLoggedIn,function(req,res){
+        var data = {
+            user       : req.user,
+            judul_buku : "",
+            tahun      : "",
+            penerbit   : "",
+            pengarang  : "" 
+        };
+        
+        res.render('form.ejs',data);
     });
 
     //logout
