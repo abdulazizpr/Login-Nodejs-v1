@@ -7,3 +7,4 @@ Ini merupakan project pertama saya menggunkana node.js
 3. Lalu buka di browser dengan alamat "http://localhost:8080/ 
 3. Login dan Sign Up menggunakan passport
 4. Forgot Password dikirim via email dengan modules nodemailer.
+5. Bisa melakukan CRUD (Create, Read, Update, Delete).
