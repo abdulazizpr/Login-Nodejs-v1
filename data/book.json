@@ -1,0 +1,3 @@
+{"_id":{"$oid":"57b28cec2a42a5b95495f24c"},"judul_buku":"Algoritma dan Pemrograman","tahun":"2012","penerbit":"Informatika","pengarang":"Rosa A.S"}
+{"_id":{"$oid":"57b28cec2a42a5b95495f24d"},"judul_buku":"Basis Data","tahun":"2013","penerbit":"Informatika","pengarang":"Budi Laksono Putro"}
+{"_id":{"$oid":"57b28cec2a42a5b95495f24e"},"judul_buku":"Jaringan Komputer","tahun":"2011","penerbit":"Informatika","pengarang":"Eddy Prasetyo Nugroho"}

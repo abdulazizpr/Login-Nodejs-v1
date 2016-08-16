@@ -4,6 +4,7 @@ var nodemailer = require('nodemailer');
 var hbs = require('nodemailer-express-handlebars');
 //load up the user model
 var User = require('./models/user');
+var Book = require('./models/book');
 var bcrypt = require('bcrypt-nodejs');
 
 var smtpTransport = nodemailer.createTransport("SMTP",{
